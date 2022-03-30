@@ -23,6 +23,7 @@ testImplementation 'org.springframework.boot:spring-boot-starter-test'
 testImplementation 'org.springframework.security:spring-security-test'
 }
 ```
+* Change the information in application.properties file
 * run with IDEA or ``./gradlew bootRun`` on terminal
 * Visit ``http://localhost:8080/``
 
