@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/fragments :: head"></head>
+<body>
+<div th:replace="fragments/fragments :: navbar"></div>
+<div th:replace="fragments/fragments :: header"></div>
+
+<form  th:action="@{/signup}" method="POST">
+  <div class="mb-3" >
+    <label for="username" class="form-label">Username</label>
+    <input class="form-control" type="text" placeholder="Default input" aria-label="default input example" id="username" name="username" required>
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+    <label for="firstName" class="form-label">First Name</label>
+    <input class="form-control" type="text" placeholder="Default input" aria-label="default input example" id="firstName" name="firstName" required>
+    <label for="lastName" class="form-label">Last Name</label>
+    <input class="form-control" type="text" placeholder="Default input" aria-label="default input example" id="lastName" name="lastName" required>
+    <label for="date" class="form-label">Date</label>
+    <input class="form-control" type="date" placeholder="Default input" aria-label="default input example" id="date" name="date" required>
+  </div>
+  <div class="mb-3">
+    <label for="bio" class="form-label">Bio</label>
+    <textarea class="form-control" id="bio" rows="3" name="bio" required></textarea>
+
+    <input type="submit" value="Submit" class="primary">
+  </div>
+</form>
+</body>
+</html>
