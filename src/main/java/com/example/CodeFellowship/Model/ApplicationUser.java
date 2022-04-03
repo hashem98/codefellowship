@@ -38,7 +38,8 @@ public class ApplicationUser implements UserDetails {
         this.bio = bio;
     }
 
-
+    @OneToMany(mappedBy = "applicationUser")
+    protected List<Post> posts;
 
 
 
@@ -66,6 +67,9 @@ public class ApplicationUser implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
+    }
+    public List<Post> getPosts() {
+        return posts;
     }
 
     public void setUserName(String userName) {
