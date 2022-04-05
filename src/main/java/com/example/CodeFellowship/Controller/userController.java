@@ -1,6 +1,5 @@
 package com.example.CodeFellowship.Controller;
 
-
 import com.example.CodeFellowship.Model.ApplicationUser;
 import com.example.CodeFellowship.Repositories.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
+import java.security.Principal;
 
 
 @Controller
@@ -28,8 +30,24 @@ public class userController {
         return "profile";
     }
 
+    @PostMapping("/follow/{id}")
+    public RedirectView getFollowerPosts(Principal currentUSer,@PathVariable Long id){
 
+        ApplicationUser user = applicationUserRepository.findUserByUserName(currentUSer.getName());
+        ApplicationUser followedUser = applicationUserRepository.findUserById(id);
 
+        followedUser.getFollowers().add(user);
+        applicationUserRepository.save(followedUser);
+
+        return new RedirectView("/");
+    }
+
+    @GetMapping("/feed")
+    public String getAllPosts(Principal p, Model model){
+        model.addAttribute("userObj", applicationUserRepository.findUserByUserName(p.getName()));
+        model.addAttribute("displayedUser", applicationUserRepository.findUserByUserName(p.getName()));
+        return "feed";
+    }
 
     @GetMapping("/user/{id}")
     public String getUserProfile(@PathVariable Long id, Model model){

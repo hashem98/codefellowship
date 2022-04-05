@@ -26,4 +26,9 @@ testImplementation 'org.springframework.security:spring-security-test'
 * Change the information in application.properties file
 * run with IDEA or ``./gradlew bootRun`` on terminal
 * Visit ``http://localhost:8080/``
-
+# how to use ny app
+* in Home page you can see the Friends' suggestions
+* in Profile page you can see your info if you loged in
+* in feed page you can see your friend's posts
+* finally yo have a logout button
+# * run with IDEA or ``./gradlew bootRun`` on terminal

@@ -25,7 +25,16 @@ public class ApplicationUser implements UserDetails {
     private Date dateOfBirth;
     private String bio;
 
+    @ManyToMany
+    @JoinTable(
+            name = "following_relations",
+            joinColumns = {@JoinColumn(name = "follower")},
+            inverseJoinColumns = {@JoinColumn(name = "following")}
+    )
+    Set<ApplicationUser> followers = new HashSet<>();
 
+    @ManyToMany(mappedBy = "followers")
+    Set<ApplicationUser> following = new HashSet<>();
 
     public ApplicationUser() {}
 
@@ -41,8 +50,17 @@ public class ApplicationUser implements UserDetails {
     @OneToMany(mappedBy = "applicationUser")
     protected List<Post> posts;
 
+    public Set<ApplicationUser> getFollowing() {
+        return following;
+    }
 
+    public Set<ApplicationUser> getFollowers() {
+        return followers;
+    }
 
+    public List<Post> getPosts() {
+        return posts;
+    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -67,9 +85,6 @@ public class ApplicationUser implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
-    }
-    public List<Post> getPosts() {
-        return posts;
     }
 
     public void setUserName(String userName) {

@@ -1,8 +1,6 @@
 package com.example.CodeFellowship.Model;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedBy;
-
 import javax.persistence.*;
 import java.sql.Date;
 
