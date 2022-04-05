@@ -28,6 +28,9 @@
                         <a class="nav-link" href="/profile" sec:authorize="isAuthenticated()">Profile</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" aria-current="page" href="/feed">Feed</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
                         <a class="nav-link" href="/logout">Logout</a>
                     </li>
                 </ul>
@@ -47,14 +50,13 @@
 <header th:fragment="header">
     <h1 th:if = "${displayedUser}" th:text="${displayedUser.getUsername()}"></h1>
 </header>
-<div th:fragment="posts">
 
+<div th:fragment="posts">
     <div th:each="post : ${displayedUser.posts}">
         <p th:text="${post.createdAt}"></p>
         <p th:text="${post.body}"></p>
+
     </div>
-
-
 </div>
 </body>
 </html>

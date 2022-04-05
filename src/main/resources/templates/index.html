@@ -17,17 +17,14 @@
   </div>
 </form>
 
-
-<div th:each="user: ${users}" style="border-style: solid;border-width: 2px;padding-left: 30px;padding-right: 30px; width: fit-content; ">
-  <div th:each="post : ${user.posts}">
-  <a th:href="@{/user/{id}(id = ${user.getId()})}" methods="get" style=" text-decoration: none;">
-    <h1 th:text="${user.getUsername()}"></h1>
-  </a>
-    <p th:text="${post.createdAt}"></p>
-    <p th:text="${post.body}"></p>
+<div th:each="user: ${users}">
+  <h5 th:text="${user.getUsername()}"></h5>
+  <form th:action="'/follow/'+${user.id}" method="post" >
+    <!--        <input type="hidden" th:value="${user.id}" name="id">-->
+    <input type="submit" value="Follow" >
+  </form>
 </div>
 
-</div>
-<!--<div th:replace="fragments/fragments :: posts"></div>-->
+<div th:replace="fragments/fragments :: posts"></div>
 </body>
 </html>
