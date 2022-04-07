@@ -26,7 +26,7 @@ public class signUpController {
 
     @GetMapping("/signup")
     public String signupPage(){
-        return "signup";
+        return "SignUp";
     }
 
 
